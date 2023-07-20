@@ -10,11 +10,16 @@
 </template>
 
 <script setup>
-import { collection, addDoc, query, where, serverTimestamp } from 'firebase/firestore'
+import { collection, addDoc, query, where, orderBy, serverTimestamp } from 'firebase/firestore'
 const db = useFirestore('Tempero')
 const user = useCurrentUser()
 
-const todos = useCollection(query(collection(db, 'todos'), where('uid', '==', user.value.uid)), { ssrKey: 'todos' })
+const q = query(collection(db, 'todos'), where('uid', '==', user.value.uid), orderBy('createdAt', 'asc'))
+
+const { data: todos, error } = useCollection(q, { ssrKey: 'todos' })
+watchEffect(() => {
+  console.error(error.value)
+})
 
 const newTodo = ref('')
 
