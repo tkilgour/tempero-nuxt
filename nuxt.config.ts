@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   ssr: false,
   // devtools: { enabled: true },
-  modules: ["nuxt-vuefire"],
+  modules: ["nuxt-vuefire", "@nuxtjs/tailwindcss"],
   vuefire: {
     auth: true,
     config: {
