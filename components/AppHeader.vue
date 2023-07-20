@@ -1,6 +1,6 @@
 <template>
-  <div>
+  <header>
     <h1>Tempero</h1>
-    <NuxtPage />
-  </div>
+    <User />
+  </header>
 </template>
