@@ -10,6 +10,14 @@
 </template>
 
 <script setup>
+definePageMeta({
+  // wait for the user to be logged in before rendering the page
+  validate: async () => {
+    const user = await getCurrentUser()
+    return user ? true : { redirect: '/' }
+  }
+})
+
 import { collection, addDoc, query, where, orderBy, serverTimestamp } from 'firebase/firestore'
 const db = useFirestore('Tempero')
 const user = useCurrentUser()
